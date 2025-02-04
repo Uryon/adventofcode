@@ -6,4 +6,6 @@ Difficulté par jour
 [★★☆☆☆] [Jour 4 - Cartes à gratter](https://adventofcode.com/2023/day/4 "Jour 4")  
 [★★★★☆] [Jour 5 - Si vous donnez de l'engrais à une graine](https://adventofcode.com/2023/day/5 "Jour 5")  
 [★☆☆☆☆] [Jour 6 - Course de bateaux](https://adventofcode.com/2023/day/6 "Jour 6")
+[★★★☆☆] [Jour 12 - Sources chaudes](https://adventofcode.com/2023/day/12 "Jour 12")
+[] [Jour 13 - Point d'incidence](https://adventofcode.com/2023/day/13 "Jour 13")
 

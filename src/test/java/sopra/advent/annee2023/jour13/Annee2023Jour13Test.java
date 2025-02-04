@@ -5,13 +5,14 @@ import sopra.advent.Jour;
 import sopra.advent.JourTest;
 import sopra.advent.annee2023.jour1.Annee2023Jour1;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class Annee2023Jour13Test extends JourTest {
     private final Annee2023Jour13 jour = new Annee2023Jour13();
-    private final String RESULTAT_ATTENDU_PARTIE_1 = "21";
+    private final String RESULTAT_ATTENDU_PARTIE_1 = "405";
     private final List<String> RESULTAT_INCORRECTS_PARTIE_1 = List.of();
     private final String RESULTAT_ATTENDU_PARTIE_2 = "0";
     private final List<String> RESULTAT_INCORRECTS_PARTIE_2 = List.of();
@@ -35,14 +36,34 @@ public class Annee2023Jour13Test extends JourTest {
 
     @Test
     public void validationPartie1() {
-        assertEquals("11", String.valueOf(jour.executePartie1(List.of("adazaddza18addazdzadza21dazdazdazzda"))));
-        assertEquals("88", String.valueOf(jour.executePartie1(List.of("adzadzdzazda8zadazdazdza"))));
+        assertFalse(jour.calculerNbErreurPourSymetrie("#..##..#", 0) > 0);
+        assertFalse(jour.calculerNbErreurPourSymetrie("#..##..#", 1) > 0);
+        assertTrue(jour.calculerNbErreurPourSymetrie("#..##..#", 2) == 0);
+        assertFalse(jour.calculerNbErreurPourSymetrie("#..##..#", 3) > 0);
+        assertTrue(jour.calculerNbErreurPourSymetrie("#..##..#", 4) == 0);
+        assertFalse(jour.calculerNbErreurPourSymetrie("#..##..#", 5) > 0);
+        assertTrue(jour.calculerNbErreurPourSymetrie("#..##..#", 6) == 0);
+        assertFalse(jour.calculerNbErreurPourSymetrie("#..##..#", 7) > 0);
+        assertFalse(jour.calculerNbErreurPourSymetrie("#..##..#", 8) > 0);
+
+
+        assertFalse(jour.estSymetriqueLigne(Arrays.asList("#.##..##.", "..#.##.#.", "##......#"), 0));
+        assertFalse(jour.estSymetriqueLigne(Arrays.asList("#.##..##.", "..#.##.#.", "##......#"), 1));
+        assertFalse(jour.estSymetriqueLigne(Arrays.asList("#.##..##.", "..#.##.#.", "##......#"), 2));
+        assertFalse(jour.estSymetriqueLigne(Arrays.asList("#.##..##.", "..#.##.#.", "##......#"), 3));
+        assertFalse(jour.estSymetriqueLigne(Arrays.asList("#.##..##.", "..#.##.#.", "##......#"), 4));
+        assertTrue(jour.estSymetriqueLigne(Arrays.asList("#.##..##.", "..#.##.#.", "##......#"), 5));
+        assertFalse(jour.estSymetriqueLigne(Arrays.asList("####..##.", "..#.##.#.", "##......#"), 5));
+        assertFalse(jour.estSymetriqueLigne(Arrays.asList("#.##..##.", "..#.##.#.", "##......#"), 6));
+        assertFalse(jour.estSymetriqueLigne(Arrays.asList("#.##..##.", "..#.##.#.", "##......#"), 7));
+        assertFalse(jour.estSymetriqueLigne(Arrays.asList("#.##..##.", "..#.##.#.", "##......#"), 8));
     }
 
 
     @Test
     public void validationPartie2() {
-        assertEquals("21",  String.valueOf(jour.executePartie2(List.of("twonetwone"))));
-        assertEquals("11",  String.valueOf(jour.executePartie2(List.of("azazzdadzaonezadazdazzad"))));
+        assertEquals(0, jour.calculerNbErreurPourSymetrie("#..##..#", 4));
+        assertEquals(1, jour.calculerNbErreurPourSymetrie("...##..#", 4));
+        assertEquals(2, jour.calculerNbErreurPourSymetrie(".#.##..#", 4));
     }
 }
