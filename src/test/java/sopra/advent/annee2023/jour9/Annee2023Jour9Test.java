@@ -3,7 +3,6 @@ package sopra.advent.annee2023.jour9;
 import org.junit.Test;
 import sopra.advent.Jour;
 import sopra.advent.JourTest;
-import sopra.advent.annee2023.jour9.Annee2023Jour9;
 
 import java.util.List;
 
