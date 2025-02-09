@@ -16,6 +16,10 @@ public class Grille<T> {
         }
     }
 
+    public Grille(List<List<T>> in) {
+        this.list = in;
+    }
+
     public T get(int x, int y) {
         return list.get(y).get(x);
     }
@@ -25,8 +29,7 @@ public class Grille<T> {
     }
 
     public List<T> getLigne(int x) {
-        return list
-                .stream()
+        return list.stream()
                 .map(c -> c.get(x))
                 .collect(Collectors.toList());
     }
