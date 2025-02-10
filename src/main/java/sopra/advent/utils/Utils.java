@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class Utils {
@@ -26,7 +27,7 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
-    public static List<Character> stringToList(String chaine){
+    public static List<Character> stringToList(String chaine) {
         return chaine.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
     }
 
@@ -52,4 +53,11 @@ public class Utils {
         return values.stream().reduce(Integer::sum).orElse(0);
     }
 
+    public static List<List<String>> transposer(List<List<String>> chaine) {
+        return IntStream.range(0, chaine.get(0).size())
+                .mapToObj(i -> chaine.stream()
+                        .map(ligne -> String.valueOf(ligne.get(i)))
+                        .collect(Collectors.toList()))
+                .collect(Collectors.toList());
+    }
 }

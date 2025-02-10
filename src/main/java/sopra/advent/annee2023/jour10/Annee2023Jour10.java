@@ -1,7 +1,7 @@
 package sopra.advent.annee2023.jour10;
 
 import sopra.advent.Jour;
-import sopra.advent.utils.Position;
+import sopra.advent.utils.PositionGrille;
 import sopra.advent.utils.Utils;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class Annee2023Jour10 extends Jour {
 
         tunnels = creerListeTunnels(in);
 
-        Position positionStart = this.findStart(tunnels);
+        PositionGrille positionStart = this.findStart(tunnels);
         Tunnel start = this.getTunnel(positionStart);
         defineStartingTunnel(positionStart, start);
 
@@ -34,7 +34,7 @@ public class Annee2023Jour10 extends Jour {
                 .max().orElse(0L));
     }
 
-    private void defineStartingTunnel(Position positionStart, Tunnel start) {
+    private void defineStartingTunnel(PositionGrille positionStart, Tunnel start) {
         boolean haut = false;
         boolean gauche = false;
         boolean droite = false;
@@ -57,43 +57,43 @@ public class Annee2023Jour10 extends Jour {
         }
         if (haut) {
             if (gauche) {
-                start.setDirection(Direction.HAUT_GAUCHE);
+                start.setDirection(Direction202310.HAUT_GAUCHE);
             }
             if (bas) {
-                start.setDirection(Direction.HAUT_BAS);
+                start.setDirection(Direction202310.HAUT_BAS);
             }
             if (droite) {
-                start.setDirection(Direction.HAUT_DROITE);
+                start.setDirection(Direction202310.HAUT_DROITE);
             }
         }
         if (gauche) {
             if (droite) {
-                start.setDirection(Direction.GAUCHE_DROITE);
+                start.setDirection(Direction202310.GAUCHE_DROITE);
             }
             if (bas) {
-                start.setDirection(Direction.BAS_GAUCHE);
+                start.setDirection(Direction202310.BAS_GAUCHE);
             }
         }
         if (droite) {
             if (bas) {
-                start.setDirection(Direction.BAS_DROITE);
+                start.setDirection(Direction202310.BAS_DROITE);
             }
         }
     }
 
-    private Tunnel getTunnel(Position pos) {
+    private Tunnel getTunnel(PositionGrille pos) {
         if (this.isHorsLimite(pos))
             return null;
         return tunnels.get(pos.getY()).get(pos.getX());
     }
 
-    private Character get(Position pos) {
+    private Character get(PositionGrille pos) {
         if (this.isHorsLimite(pos))
             return null;
         return tunnelString.get(pos.getY()).get(pos.getX());
     }
 
-    private boolean isHorsLimite(Position pos) {
+    private boolean isHorsLimite(PositionGrille pos) {
         return pos.getX() < 0 || pos.getX() >= tunnels.get(0).size()
                 || pos.getY() < 0 || pos.getY() >= tunnels.size();
     }
@@ -112,7 +112,7 @@ public class Annee2023Jour10 extends Jour {
         }
     }
 
-    private boolean essayer(Position positionStart, Tunnel start) {
+    private boolean essayer(PositionGrille positionStart, Tunnel start) {
         Tunnel tunnelDebut = this.getTunnel(positionStart);
         Tunnel tunnel = tunnelDebut;
         Tunnel tunnelPrecedent = start;
@@ -132,11 +132,11 @@ public class Annee2023Jour10 extends Jour {
         return false;
     }
 
-    private Position findStart(List<List<Tunnel>> tunnels) {
+    private PositionGrille findStart(List<List<Tunnel>> tunnels) {
         for (int y = 0; y < tunnels.size(); y++) {
             for (int x = 0; x < tunnels.get(0).size(); x++) {
                 if (tunnels.get(y).get(x).isStart()) {
-                    return new Position(x, y);
+                    return new PositionGrille(x, y);
                 }
             }
         }
@@ -205,7 +205,7 @@ public class Annee2023Jour10 extends Jour {
 
     public Object executePartie2(List<String> in) {
         tunnels = creerListeTunnels(in);
-        Position positionStart = this.findStart(tunnels);
+        PositionGrille positionStart = this.findStart(tunnels);
         Tunnel start = this.getTunnel(positionStart);
         defineStartingTunnel(positionStart, start);
         this.parcourirTunnel(start);
@@ -217,7 +217,7 @@ public class Annee2023Jour10 extends Jour {
                 .collect(Collectors.toList());
         for (int y = 0; y < tunnelString.size(); y++) {
             for (int x = 0; x < tunnelString.get(0).size(); x++) {
-                Position position = new Position(x, y);
+                PositionGrille position = new PositionGrille(x, y);
                 if (this.get(position) == '.' && this.compterAGauche(position) % 2 == 1 && this.compterADroite(position) % 2 == 1)
                     result++; // Ligne 6 colonne 2 3  8 9
             }
@@ -225,8 +225,8 @@ public class Annee2023Jour10 extends Jour {
         return result;
     }
 
-    private Long compterAGauche(Position position) {
-        Position positionActuelle = position;
+    private Long compterAGauche(PositionGrille position) {
+        PositionGrille positionActuelle = position;
         Long compteur = 0L;
         while (positionActuelle.getX() > 0) {
             positionActuelle = positionActuelle.gauche();
@@ -238,8 +238,8 @@ public class Annee2023Jour10 extends Jour {
         return compteur;
     }
 
-    private Long compterADroite(Position position) {
-        Position positionActuelle = position;
+    private Long compterADroite(PositionGrille position) {
+        PositionGrille positionActuelle = position;
         Long compteur = 0L;
         while (positionActuelle.getX() < tunnelString.get(0).size() - 2) {
             positionActuelle = positionActuelle.droite();

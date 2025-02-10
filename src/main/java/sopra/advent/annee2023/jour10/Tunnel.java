@@ -3,7 +3,7 @@ package sopra.advent.annee2023.jour10;
 class Tunnel {
     private Tunnel entree;
     private Tunnel sortie;
-    private Direction direction;
+    private Direction202310 direction202310;
     private Long distance;
     private boolean isLoop = false;
     private boolean isStart = false;
@@ -12,8 +12,8 @@ class Tunnel {
         return isLoop;
     }
 
-    public void setDirection(Direction direction) {
-        this.direction = direction;
+    public void setDirection(Direction202310 direction202310) {
+        this.direction202310 = direction202310;
     }
 
     public Tunnel setLoop(boolean loop) {
@@ -42,8 +42,8 @@ class Tunnel {
         return sortie;
     }
 
-    public Direction getDirection() {
-        return direction;
+    public Direction202310 getDirection() {
+        return direction202310;
     }
 
     public void setEntree(Tunnel entree) {
@@ -56,30 +56,30 @@ class Tunnel {
     public Tunnel(Character direction) {
         switch (direction) {
             case '|':
-                this.direction = Direction.HAUT_BAS;
+                this.direction202310 = Direction202310.HAUT_BAS;
                 break;
             case '-':
-                this.direction = Direction.GAUCHE_DROITE;
+                this.direction202310 = Direction202310.GAUCHE_DROITE;
                 break;
             case 'L':
-                this.direction = Direction.HAUT_DROITE;
+                this.direction202310 = Direction202310.HAUT_DROITE;
                 break;
             case 'J':
-                this.direction = Direction.HAUT_GAUCHE;
+                this.direction202310 = Direction202310.HAUT_GAUCHE;
                 break;
             case '7':
-                this.direction = Direction.BAS_GAUCHE;
+                this.direction202310 = Direction202310.BAS_GAUCHE;
                 break;
             case 'F':
-                this.direction = Direction.BAS_DROITE;
+                this.direction202310 = Direction202310.BAS_DROITE;
                 break;
             case 'S':
                 this.distance = 0L;
-                this.direction = Direction.S;
+                this.direction202310 = Direction202310.S;
                 this.isStart = true;
                 break;
             default:
-                this.direction = null;
+                this.direction202310 = null;
         }
     }
 
@@ -95,38 +95,38 @@ class Tunnel {
     }
 
     public boolean isGauche() {
-        return isStart() || direction == Direction.GAUCHE_DROITE ||
-                direction == Direction.BAS_GAUCHE ||
-                direction == Direction.HAUT_GAUCHE;
+        return isStart() || direction202310 == Direction202310.GAUCHE_DROITE ||
+                direction202310 == Direction202310.BAS_GAUCHE ||
+                direction202310 == Direction202310.HAUT_GAUCHE;
     }
 
     public boolean isHaut() {
-        return isStart() || direction == Direction.HAUT_GAUCHE ||
-                direction == Direction.HAUT_BAS ||
-                direction == Direction.HAUT_DROITE;
+        return isStart() || direction202310 == Direction202310.HAUT_GAUCHE ||
+                direction202310 == Direction202310.HAUT_BAS ||
+                direction202310 == Direction202310.HAUT_DROITE;
     }
 
     public boolean isBas() {
-        return isStart() || direction == Direction.BAS_DROITE ||
-                direction == Direction.BAS_GAUCHE ||
-                direction == Direction.HAUT_BAS;
+        return isStart() || direction202310 == Direction202310.BAS_DROITE ||
+                direction202310 == Direction202310.BAS_GAUCHE ||
+                direction202310 == Direction202310.HAUT_BAS;
     }
 
     public boolean isDroite() {
-        return isStart() || direction == Direction.BAS_DROITE ||
-                direction == Direction.HAUT_DROITE ||
-                direction == Direction.GAUCHE_DROITE;
+        return isStart() || direction202310 == Direction202310.BAS_DROITE ||
+                direction202310 == Direction202310.HAUT_DROITE ||
+                direction202310 == Direction202310.GAUCHE_DROITE;
     }
 
     @Override
     public String toString() {
-        if (direction == null)
+        if (direction202310 == null)
             return ".";
-        return String.valueOf(direction.getValue());
+        return String.valueOf(direction202310.getValue());
     }
 
     public boolean isHorizontal() {
-        return direction == Direction.GAUCHE_DROITE;
+        return direction202310 == Direction202310.GAUCHE_DROITE;
     }
 
 }

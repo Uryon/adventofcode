@@ -21,14 +21,20 @@ public class Grille<T> {
     }
 
     public T get(int x, int y) {
+        if (list.get(y) == null)
+            return null;
         return list.get(y).get(x);
     }
 
-    public List<T> getColonne(int y) {
+    public T get(PositionGrille position) {
+        return this.get(position.getX(), position.getY());
+    }
+
+    public List<T> getLigne(int y) {
         return list.get(y);
     }
 
-    public List<T> getLigne(int x) {
+    public List<T> getColonne(int x) {
         return list.stream()
                 .map(c -> c.get(x))
                 .collect(Collectors.toList());
@@ -36,6 +42,10 @@ public class Grille<T> {
 
     public void set(int x, int y, T object) {
         list.get(y).set(x, object);
+    }
+
+    public void set(PositionGrille position, T object) {
+       this.set(position.getX(),position.getY(),object);
     }
 
     public void set(int y, T[] objects) {
@@ -48,5 +58,23 @@ public class Grille<T> {
 
     public int getLargeur() {
         return list.get(0).size();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("");
+        for (List<T> ligne : list) {
+            for (T colonne : ligne) {
+                stringBuilder.append(colonne).append(" ");
+            }
+            stringBuilder.append("");
+        }
+        stringBuilder.append("");
+        return stringBuilder.toString();
+    }
+
+    public boolean estValide(PositionGrille position) {
+        return position.getX() >= 0 && position.getY() >= 0 &&
+                position.getX() < this.getLigne(0).size() && position.getY() < this.getColonne(0).size();
     }
 }

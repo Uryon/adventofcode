@@ -2,7 +2,7 @@ package sopra.advent.annee2023.jour11;
 
 import sopra.advent.Jour;
 import sopra.advent.utils.Grille;
-import sopra.advent.utils.Position;
+import sopra.advent.utils.PositionGrille;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Annee2023Jour11 extends Jour {
         boolean[] colonnesVide = new boolean[in.size()];
         boolean[] lignesVide = new boolean[in.get(0).length()];
         Grille<String> grille = new Grille<>(in.get(0).length(), in.size());
-        List<Position> galaxies = new ArrayList<>();
+        List<PositionGrille> galaxies = new ArrayList<>();
         for (int y = 0; y < in.size(); y++) {
             if (!in.get(y).contains("#")) {
                 lignesVide[y] = true;
@@ -32,7 +32,7 @@ public class Annee2023Jour11 extends Jour {
             colonnesVide[x] = true;
             for (int y = 0; y < grille.getHauteur(); y++) {
                 if (grille.get(x, y).equals("#")) {
-                    galaxies.add(new Position(x, y));
+                    galaxies.add(new PositionGrille(x, y));
                     colonnesVide[x] = false;
                 }
             }
@@ -48,13 +48,13 @@ public class Annee2023Jour11 extends Jour {
         return resultat;
     }
 
-    private long calculerDistance(Position galaxie1, Position galaxie2, boolean[] lignesVide, boolean[] colonnesVide, int expansion) {
+    private long calculerDistance(PositionGrille galaxie1, PositionGrille galaxie2, boolean[] lignesVide, boolean[] colonnesVide, int expansion) {
         return Math.abs(galaxie1.getX() - galaxie2.getX())
                 + Math.abs(galaxie1.getY() - galaxie2.getY())
                 + calculerNombreEspaceVideEntre(galaxie1, galaxie2, lignesVide, colonnesVide, expansion);
     }
 
-    private int calculerNombreEspaceVideEntre(Position galaxie1, Position galaxie2, boolean[] lignesVide, boolean[] colonnesVide, int expansion) {
+    private int calculerNombreEspaceVideEntre(PositionGrille galaxie1, PositionGrille galaxie2, boolean[] lignesVide, boolean[] colonnesVide, int expansion) {
         int resultat = 0;
 
         for (int y = Math.min(galaxie1.getY(), galaxie2.getY()); y < Math.max(galaxie1.getY(), galaxie2.getY()); y++) {

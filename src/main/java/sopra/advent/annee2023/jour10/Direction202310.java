@@ -1,6 +1,6 @@
 package sopra.advent.annee2023.jour10;
 
-enum Direction {
+enum Direction202310 {
     HAUT_BAS('|'),
     GAUCHE_DROITE('-'),
     HAUT_GAUCHE('J'),
@@ -11,7 +11,7 @@ enum Direction {
 
     private Character c;
 
-    Direction(Character s) {
+    Direction202310(Character s) {
         this.c = s;
     }
 

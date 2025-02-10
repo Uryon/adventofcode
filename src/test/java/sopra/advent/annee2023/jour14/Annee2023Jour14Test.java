@@ -10,7 +10,7 @@ public class Annee2023Jour14Test extends JourTest {
     private final Annee2023Jour14 jour = new Annee2023Jour14();
     private final String RESULTAT_ATTENDU_PARTIE_1 = "136";
     private final List<String> RESULTAT_INCORRECTS_PARTIE_1 = List.of();
-    private final String RESULTAT_ATTENDU_PARTIE_2 = "";
+    private final String RESULTAT_ATTENDU_PARTIE_2 = "64";
     private final List<String> RESULTAT_INCORRECTS_PARTIE_2 = List.of();
 
     @Override
