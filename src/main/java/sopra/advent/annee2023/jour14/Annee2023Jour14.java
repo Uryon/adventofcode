@@ -4,9 +4,7 @@ import sopra.advent.Jour;
 import sopra.advent.utils.Direction;
 import sopra.advent.utils.Grille;
 import sopra.advent.utils.PositionGrille;
-import sopra.advent.utils.Utils;
 
-import javax.swing.text.Position;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -30,26 +28,24 @@ public class Annee2023Jour14 extends Jour {
         Map<String, Integer> cycles = new HashMap<>();
         int debutCycle = -1;
         int dureeCycle = 0;
-        int nbCycles = 100;
+        int nbCycles = 1000000000;
 
         for (int i = 0; i < nbCycles; i++) {
             roll(grille);
-            if (cycles.containsKey(grille.toString())) {
-                debutCycle = cycles.get(grille.toString());
+            String etatGrille = grille.toString();
+            if (cycles.containsKey(etatGrille)) {
+                debutCycle = cycles.get(etatGrille);
                 dureeCycle = i - debutCycle;
-                System.out.println(debutCycle + " " + dureeCycle);
                 break;
             }
-            cycles.put(grille.toString(), i);
-
+            cycles.put(etatGrille, i);
         }
         if (dureeCycle > 0) {
             int cyclesRestants = (nbCycles - debutCycle) % dureeCycle;
-            for (int i = 0; i < cyclesRestants; i++) {
+            for (int i = 0; i < cyclesRestants - 1; i++) {
                 roll(grille);
             }
         }
-        System.out.println(grille);
         return calculerCharge(grille);
     }
 
@@ -63,8 +59,8 @@ public class Annee2023Jour14 extends Jour {
     private int calculerCharge(Grille<String> grille) {
         int taille = grille.getHauteur();
         int charge = 0;
-        for (int y = 0; y < grille.getHauteur(); y++) {
-            charge += (taille - y) * calculerNbPierreLigne(grille, y);
+        for (int y = 0; y < taille; y++) {
+            charge += (int) ((taille - y) * calculerNbPierreLigne(grille, y));
         }
         return charge;
     }
@@ -92,7 +88,6 @@ public class Annee2023Jour14 extends Jour {
                             break;
                         }
                     }
-
                     if (!initial.equals(actuel)) {
                         grille.set(initial, ".");
                         grille.set(actuel, "O");
@@ -101,6 +96,4 @@ public class Annee2023Jour14 extends Jour {
             }
         }
     }
-
-
 }

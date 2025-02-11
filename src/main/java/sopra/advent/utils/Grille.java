@@ -62,14 +62,14 @@ public class Grille<T> {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("");
+        StringBuilder stringBuilder = new StringBuilder("\n");
         for (List<T> ligne : list) {
             for (T colonne : ligne) {
                 stringBuilder.append(colonne).append(" ");
             }
-            stringBuilder.append("");
+            stringBuilder.append("\n");
         }
-        stringBuilder.append("");
+        stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 
