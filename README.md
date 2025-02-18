@@ -10,3 +10,4 @@ Difficulté par jour
 [★★★☆☆] [Jour 13 - Point d'incidence](https://adventofcode.com/2023/day/13 "Jour 13")
 [★★★☆☆] [Jour 14 - Réflecteur parabolique](https://adventofcode.com/2023/day/14 "Jour 14")
 [★★☆☆☆] [Jour 15 - Bibliothèque d'objectifs](https://adventofcode.com/2023/day/15 "Jour 15")
+[★★★★☆] [Jour 17 - Creuset maladroit](https://adventofcode.com/2023/day/17 "Jour 17")

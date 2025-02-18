@@ -15,7 +15,6 @@ public class Grille<T> {
             list.add(new ArrayList<>(sizeX));
         }
     }
-
     public Grille(List<List<T>> in) {
         this.list = in;
     }
