@@ -60,4 +60,10 @@ public class Utils {
                         .collect(Collectors.toList()))
                 .collect(Collectors.toList());
     }
+
+    public static Grille<Character> parserGrille(List<String> in) {
+        return new Grille<>(in.stream()
+                .map(Utils::stringToList)
+                .collect(Collectors.toList()));
+    }
 }

@@ -15,6 +15,7 @@ public class Grille<T> {
             list.add(new ArrayList<>(sizeX));
         }
     }
+
     public Grille(List<List<T>> in) {
         this.list = in;
     }
@@ -44,7 +45,7 @@ public class Grille<T> {
     }
 
     public void set(PositionGrille position, T object) {
-       this.set(position.getX(),position.getY(),object);
+        this.set(position.getX(), position.getY(), object);
     }
 
     public void set(int y, T[] objects) {
